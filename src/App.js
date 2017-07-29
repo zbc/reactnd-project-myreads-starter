@@ -3,7 +3,7 @@ import './App.css'
 import * as BooksAPI from './utils/BooksAPI'
 import BookShelf from './BookShelf'
 import Search from './Search'
-import {Route} from 'react-router-dom'
+import {Route, Link} from 'react-router-dom'
 
 class BooksApp extends React.Component {
     state = {
@@ -36,7 +36,7 @@ class BooksApp extends React.Component {
                         </div>
                     </div>
                     <div className="open-search">
-                        <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+                        <Link to='/search'>Add a book</Link>
                     </div>
                 </div>
                 )} />
