@@ -7,7 +7,7 @@ class Book extends Component {
         return (
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.smallThumbnail})` }}></div>
+                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks && imageLinks.smallThumbnail})` }}></div>
                     <div className="book-shelf-changer">
                         <select>
                             <option value="none" disabled>Move to...</option>
@@ -18,8 +18,8 @@ class Book extends Component {
                         </select>
                     </div>
                 </div>
-                <div className="book-title">{ title }</div>
-                <div className="book-authors">{ authors[0] }</div>
+                <div className="book-title">{ title && title }</div>
+                <div className="book-authors">{ authors && authors[0] }</div>
             </div>
         )
     }
