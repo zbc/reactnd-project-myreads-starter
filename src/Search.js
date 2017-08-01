@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import * as BooksAPI from './utils/BooksAPI'
 import sortBy from 'sort-by'
 import Book from './Book'
+import PropTypes from 'prop-types'
 
 class Search extends Component {
     state = {
@@ -18,7 +19,7 @@ class Search extends Component {
            this.setState({query : query})
            BooksAPI.search(query)
                .then((results) => {
-                   console.log(results)
+                //    console.log(results)
                    if (results.error) {
                        this.setState({
                            results: [],
@@ -57,13 +58,17 @@ class Search extends Component {
             <div className="search-books-results">
                  {error ? (<p>{error}</p>) : (
                     <ol className="books-grid">
-                        {results && results.sort(sortBy('title')).map((book, index) => (<li key={book.id}><Book book={book} /></li>))}
+                        {results && results.sort(sortBy('title')).map((book, index) => (<li key={book.id}><Book book={book} onSelectShelfBook={this.props.onSelectShelf}/></li>))}
                     </ol>
                 )} 
             </div>
       </div>
         )
     } 
+}
+
+Search.propTypes = {
+    onSelectShelf: PropTypes.func.isRequired
 }
 
 export default Search

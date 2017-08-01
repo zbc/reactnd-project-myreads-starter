@@ -16,6 +16,18 @@ class BooksApp extends React.Component {
         books: []
     }
 
+    updateShelf = (book, shelf) => {
+        BooksAPI.update(book, shelf)
+                .then(() => {
+                    book.shelf = shelf
+                    this.setState((prevState) => (
+                        {
+                            books : prevState.books.filter((b) => b.id !== book.id).concat([book])
+                        }
+                    ))
+                })
+    }
+
     componentDidMount() {
         BooksAPI.getAll().then((books) => {
             this.setState({books})
@@ -32,7 +44,7 @@ class BooksApp extends React.Component {
                     </div>
                     <div className="list-books-content">
                         <div>
-                            <BookShelf books={this.state.books} />
+                            <BookShelf books={this.state.books} onSelectShelf={this.updateShelf} />
                         </div>
                     </div>
                     <div className="open-search">
@@ -40,7 +52,9 @@ class BooksApp extends React.Component {
                     </div>
                 </div>
                 )} />
-                <Route path='/search' component={Search} />
+                 <Route path='/search' render={() => (
+                     <Search onSelectShelf={this.updateShelf} />
+                 )} /> 
             </div>
         )
     }

@@ -18,7 +18,7 @@ class BookShelf extends Component {
                         <div className="bookshelf-books">
                             <ol className="books-grid">
                                 {books.map((book) => {
-                                      return book.shelf === shelfCategory && (<li key={book.id}><Book book={book} /></li>)  
+                                      return book.shelf === shelfCategory && (<li key={book.id}><Book book={book} onSelectShelfBook={this.props.onSelectShelf} /></li>)  
                                 })}
                             </ol>
                         </div>
@@ -30,7 +30,8 @@ class BookShelf extends Component {
 }
 
 BookShelf.propTypes = {
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    onSelectShelf: PropTypes.func.isRequired
 }
 
 export default BookShelf
