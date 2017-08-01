@@ -3,6 +3,10 @@ import PropTypes from 'prop-types'
 
 class Book extends Component {
 
+    /**
+     * @description select shelf and pass result to parent component
+     * @param {string} shelf - the shelf you select
+     */
     selectShelf = (shelf) => {
         this.props.onSelectShelfBook(this.props.book, shelf)
     }

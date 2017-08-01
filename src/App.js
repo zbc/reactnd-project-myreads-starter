@@ -16,6 +16,11 @@ class BooksApp extends React.Component {
         books: []
     }
 
+    /**
+     * @description update book with specific shelf option
+     * @param {object} book - The book you want to update
+     * @param {string} shelf - which shelf you want to move
+     */
     updateShelf = (book, shelf) => {
         BooksAPI.update(book, shelf)
                 .then(() => {
